@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>古砦仫佬族乡大户村卫星地图</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        /* 设置body和html的宽度和高度为100%，并移除默认边距 */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        /* 设置#map容器的高度和宽度为100%，并移除默认边距 */
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // 初始化地图
+        var map = L.map('map').setView([24.726, 109.075], 15); // 设置中心点经纬度
+
+        // 添加Esri的World Imagery卫星地图图层
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        }).addTo(map);
+
+        // 添加标记点
+        var markers = [
+       { name: "石厄屯", latLng:[24.712460953,109.075236897] },
+{ name: "石林屯", latLng:[24.720651263,109.078848147] },
+{ name: "蓬坡屯", latLng:[24.722764593,109.068508637] },
+{ name: "大莫屯", latLng:[24.727362603,109.067046757] },
+{ name: "东风屯", latLng:[24.727496983,109.084542797] },
+{ name: "滩头屯", latLng:[24.730357993,109.078891707] },
+{ name: "新维屯", latLng:[24.735852073,109.061455777] },
+{ name: "木寮屯", latLng:[24.735636873,109.075689657] },
+{ name: "利向屯", latLng:[24.738883583,109.077430797] },
+{ name: "桥头屯", latLng:[24.738891063,109.075114877] },
+{ name: "大户屯", latLng:[24.738747323,109.072852427] }
+        ];
+
+        markers.forEach(function(marker) {
+            L.marker([marker.latLng[0], marker.latLng[1]]).addTo(map)
+                .bindPopup(marker.name);
+        });
+    </script>
+</body>
+</html>
